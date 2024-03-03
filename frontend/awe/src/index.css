@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Quicksand:wght@400..600&display=swap');
+
+html, body {
+  margin: 0;
+  font-family: 'Quicksand';
+  height: 100%;
+  width: 100%;
+}
+
+code {
+  font-family: 'Fira Code';
+  background-color: #000;
+  color: #fff;
+}

@@ -1,0 +1,19 @@
+$fg-color: #fff;
+$bg-color: #2d2e2d;
+
+.App {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+
+  text-align: center;
+  background-color: $bg-color;
+  color: $fg-color;
+
+  p {
+    font-weight: 600;
+    font-size: 48px;
+  }
+}
