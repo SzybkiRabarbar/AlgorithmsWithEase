@@ -1,5 +1,5 @@
-$fg-color: #fff;
-$bg-color: #2d2e2d;
+$color-900: #1F2933;
+$color-100: #E4E7EB;
 
 .App {
   height: 100%;
@@ -9,11 +9,6 @@ $bg-color: #2d2e2d;
   overflow: hidden;
 
   text-align: center;
-  background-color: $bg-color;
-  color: $fg-color;
-
-  p {
-    font-weight: 600;
-    font-size: 48px;
-  }
+  background-color: $color-900;
+  color: $color-100;
 }

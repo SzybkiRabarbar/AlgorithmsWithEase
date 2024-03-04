@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Quicksand:wght@400..600&display=swap');
+$color-900: #1F2933;
+$color-50: #F5F7FA;
 
 html, body {
   margin: 0;
   font-family: 'Quicksand';
   height: 100%;
   width: 100%;
+  background-color: $color-900;
 }
 
 code {
   font-family: 'Fira Code';
-  background-color: #000;
-  color: #fff;
+  background-color: $color-900;
+  color: $color-50;
 }
