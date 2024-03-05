@@ -1,19 +1,40 @@
-$fg-color: #fff;
-$bg-color: #2d2e2d;
+@use 'utils/_colors.scss' as *;
 
 .App {
   height: 100%;
   position: absolute;
   left: 0;
   width: 100%;
-  overflow: hidden;
 
   text-align: center;
-  background-color: $bg-color;
-  color: $fg-color;
+  background-color: $color-900;
+}
 
-  p {
-    font-weight: 600;
-    font-size: 48px;
+.container {
+  position: relative;
+  width: 92%;
+  height: 90vh;
+  padding: 0% 2%;
+  border-radius: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $color-800;
+  border: 2px solid $color-400;
+  box-shadow: 0vmin 0vmin 3vmin $color-800;
+
+  .content {
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    -webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+    }
+
+    height: 100%;
+    color: $color-100;
+    h1 {
+      color: $color-200;
+    }
   }
 }
