@@ -1,9 +1,9 @@
-import './User.scss'
+import './User.scss';
 
 function User() {
   return (
-    <div className='User'>
-      User
+    <div className='float-div User'>
+      <p>U</p>
     </div>
   )
 }
