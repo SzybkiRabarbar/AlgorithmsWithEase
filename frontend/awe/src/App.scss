@@ -1,8 +1,4 @@
-$color-900: #1F2933;
-$color-800: #323F4B;
-$color-400: #7B8794;
-$color-200: #CBD2D9;
-$color-100: #E4E7EB;
+@use 'utils/_colors.scss' as *;
 
 .App {
   height: 100%;
@@ -25,6 +21,7 @@ $color-100: #E4E7EB;
   transform: translate(-50%, -50%);
   background-color: $color-800;
   border: 2px solid $color-400;
+  box-shadow: 0vmin 0vmin 3vmin $color-800;
 
   .content {
     overflow-y: scroll;
