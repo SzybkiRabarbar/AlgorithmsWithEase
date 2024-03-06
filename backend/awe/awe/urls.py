@@ -16,7 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from site_content.views import \
+    ArticlesListView, ArticleByIdView, ArticleByGroupView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/articles/',
+         ArticlesListView.as_view(),
+         name='articles content'),
+    path('api/article/<str:article_id>',
+         ArticleByIdView.as_view(),
+         name='article content'),
+    path('api/group/<int:group_id>',
+         ArticleByIdView.as_view(),
+         name='articles from group'),
 ]
