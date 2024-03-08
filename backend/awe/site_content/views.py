@@ -18,8 +18,8 @@ class ArticleByIdView(APIView):
         return Response(article.to_dict())
 
 
-class QuestionByIdView(APIView):
+class ProblemByIdView(APIView):
     
     def get(self, request, question_id=None):
-        article = Firebase.db.collection("questions").document(question_id).get()
-        return Response(article.to_dict())
+        problem = Firebase.db.collection("problems").document(question_id).get()
+        return Response(problem.to_dict())
