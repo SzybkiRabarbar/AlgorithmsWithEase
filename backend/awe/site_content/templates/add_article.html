@@ -1,0 +1,142 @@
+<!-- add_article.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add article</title>
+    <style>
+        html, body {
+            background-color: rgb(60, 60, 60);
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form id="form_" method="post">
+        {% csrf_token %}
+        <br /><button type="submit">Append article</button><br /><br />
+        <label for="name">Name</label><br />
+        <input type="text" id="name" name="name"><br />
+
+        <label for="title">Title</label><br />
+        <input type="text" id="title" name="title"><br />
+
+        <label for="group_id">Group</label><br />
+        <input type="number" id="group_id" name="group_id"><br />
+
+        <label for="picked">Content</label><br />
+        <select id="picked">
+            <option value="0">text</option>
+            <option value="1">img</option>
+            <option value="2">video</option>
+            <option value="3">code</option>
+            <option value="4">note</option>
+        </select>
+        <button type="button" onclick="addContent()">Add</button><br />
+    </form>
+    <script>
+        var counter = 0;
+        function addContent() {
+            const picked_type = document.getElementById("picked").value;
+            const contentDiv = document.getElementById("content");
+            const form_ = document.getElementById("form_");
+
+            const addBr = () => {
+                const br = document.createElement("br");
+                form_.appendChild(br);
+            }
+
+            const addHr = () => {
+                addBr();
+                const hr = document.createElement("hr");
+                form_.appendChild(hr);
+            }
+
+            const addHeader = (name) => {
+                addHr();
+
+                const header = document.createElement("h3");
+                header.textContent = name;
+                form_.appendChild(header);
+            }
+
+            const appendToForm = (array) => {
+                for (let index = 0; index < array.length; index++) {
+                    form_.appendChild(array[index][0]);  // Label
+                    addBr();
+                    form_.appendChild(array[index][1]);  // Input
+                    addBr();
+                }
+            }
+
+            const createFields = ([id, type]) => {
+                const label = document.createElement("label")
+                label.htmlFor = id;
+                label.textContent = id;
+
+                const input = document.createElement("input");
+                input.id = id;
+                input.name = id;
+                input.type = type;
+
+                return [label, input];
+            }
+
+            const addFields = (params) => {
+                
+                const fields = [];
+                for (let i = 0; i < params.length; i++) {
+                    fields[i] = createFields(params[i])
+                }
+
+                appendToForm(fields);
+            }
+
+            const order = document.createElement("input");
+            order.type = "hidden";
+            order.id = counter + ":";
+            order.name = counter + ":";
+            order.value = picked_type;
+            form_.appendChild(order);
+
+            var params;
+            switch(picked_type) {
+                case "0":
+                    addHeader('Text');
+                    params = [
+                        [counter + ":text", 'text'],
+                    ];
+                    break;
+                case "1":
+                    addHeader('Img');
+                    params = [
+                        [counter + ":src", 'text'],
+                        [counter + ":alt", 'text'],
+                    ];
+                    break;
+                case "2":
+                    addHeader('Video');
+                    params = [
+                        [counter + ":url", 'text'],
+                    ];
+                    break;
+                case "3":
+                    addHeader('Code');
+                    params = [
+                        [counter + ":url", 'text'],
+                    ]
+                    break;
+                case "4":
+                    addHeader('Note');
+                    params = [
+                        [counter + ":note", 'text'],
+                    ]
+                    break;
+            }
+            addFields(params);
+
+            ++counter;
+        }
+    </script>
+</body>
+</html>
