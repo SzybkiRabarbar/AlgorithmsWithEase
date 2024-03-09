@@ -1,0 +1,91 @@
+<!-- add_problem.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add problem</title>
+    <style>
+        html, body {
+            background-color: rgb(60, 60, 60);
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form id="form_" method="post">
+        {% csrf_token %}
+        <br /><button type="submit">Append problem</button><br /><br />
+
+        <label for="name">name</label><br />
+        <input type="text" id="name" name="name"><br />
+
+        <label for="problem_url">problem_url</label><br />
+        <input type="text" id="problem_url" name="problem_url"><br />
+
+        <label for="group_id">group_id</label><br />
+        <input type="number" id="group_id" name="group_id"><br />
+
+        <label for="important">important</label><br />
+        <input type="checkbox" id="important" name="important"><br />
+
+        <label for="solution_url">solution_url</label><br />
+        <input type="text" id="solution_url" name="solution_url"><br />
+
+        <label for="video_url">video_url</label><br />
+        <input type="text" id="video_url" name="video_url"><br />
+
+        <button type="button" onclick="addContent()">Add tip</button><br />
+    </form>
+    <script>
+        var counter = 0;
+        function addContent() {
+            const form_ = document.getElementById("form_");
+
+            const addBr = () => {
+                const br = document.createElement("br");
+                form_.appendChild(br);
+            }
+
+            const appendToForm = (array) => {
+                for (let index = 0; index < array.length; index++) {
+                    form_.appendChild(array[index][0]);  // Label
+                    addBr();
+                    form_.appendChild(array[index][1]);  // Input
+                    addBr();
+                }
+            }
+
+            const createFields = ([id, type]) => {
+                const label = document.createElement("label")
+                label.htmlFor = id;
+                label.textContent = id;
+
+                const input = document.createElement("input");
+                input.id = id;
+                input.name = id;
+                input.type = type;
+
+                return [label, input];
+            }
+
+            const addFields = (params) => {
+                
+                const fields = [];
+                for (let i = 0; i < params.length; i++) {
+                    fields[i] = createFields(params[i])
+                }
+
+                appendToForm(fields);
+            }
+
+            var params;
+            params = [
+                [counter, 'text'],
+            ];
+            addFields(params);
+
+            ++counter;
+        }
+    </script>
+</body>
+</html>
