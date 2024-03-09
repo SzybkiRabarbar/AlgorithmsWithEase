@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response 
 import firebase_admin
 from firebase_admin import credentials, firestore
-from postgre_manager.models import Article
+from postgre_manager.models import Article, Problem
 
 
 class Firebase():
@@ -31,8 +31,8 @@ class ProblemByIdView(APIView):
 def add_article_view(request):
 
     if request.method == "POST":
-        article_data = Utils.fetch_form(request)
-        fire_id = Utils.add_data_to_firestore(article_data)
+        article_data = Utils.fetch_article_form(request)
+        fire_id = Utils.add_data_to_firestore('articles', article_data)
         article = Article(
             name=request.POST.get('name'),
             fire_id=fire_id,
@@ -43,12 +43,27 @@ def add_article_view(request):
     return render(request, 'add_article.html')
 
 
+@login_required
+def add_problem_view(request):
+
+    if request.method == "POST":
+        problem_data = Utils.fetch_problem_form(request)
+        fire_id = Utils.add_data_to_firestore('problems', problem_data)
+        problem = Problem(
+            name=request.POST.get('name'),
+            fire_id=fire_id,
+            group_id=problem_data['group_id']
+        )
+        problem.save()
+
+    return render(request, 'add_problem.html')
+
+
 class Utils:
 
     @staticmethod
-    def fetch_form(request) -> dict:
+    def fetch_article_form(request) -> dict:
         result = dict()
-
         form = dict(request.POST.items())
 
         for key in ['title', 'group_id']:
@@ -83,7 +98,25 @@ class Utils:
         return result
 
     @staticmethod
-    def add_data_to_firestore(data: dict) -> str:
-        doc_ref = Firebase.db.collection('articles').document()
+    def add_data_to_firestore(collection: str, data: dict) -> str:
+        doc_ref = Firebase.db.collection(collection).document()
         doc_ref.set(data)
         return doc_ref.id
+
+    @staticmethod
+    def fetch_problem_form(request) -> dict:
+        result = dict()
+        form_ = dict(request.POST.items())
+
+        for key in ['problem_url', 'group_id', 'important',
+                    'solution_url', 'video_url']:
+            if key in form_:
+                result[key] = form_[key]
+        
+        result['tips'] = []
+
+        counter = 0
+        while str(counter) in form_:
+            result['tips'].append(form_[str(counter)])
+            counter += 1
+        return result

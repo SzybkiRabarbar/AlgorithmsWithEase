@@ -15,6 +15,7 @@
     <form id="form_" method="post">
         {% csrf_token %}
         <br /><button type="submit">Append article</button><br /><br />
+
         <label for="name">Name</label><br />
         <input type="text" id="name" name="name"><br />
 
@@ -38,7 +39,6 @@
         var counter = 0;
         function addContent() {
             const picked_type = document.getElementById("picked").value;
-            const contentDiv = document.getElementById("content");
             const form_ = document.getElementById("form_");
 
             const addBr = () => {
