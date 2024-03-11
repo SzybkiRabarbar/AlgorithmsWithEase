@@ -46,7 +46,7 @@ function Nav() {
         </img>
       </div>
       {menuDiv('/', house)}
-      {menuDiv('/progress', barsProgress)}
+      {menuDiv('/groups', barsProgress)}
       {menuDiv('/test', map)}
       {menuDiv('https://github.com/SzybkiRabarbar/AlgorithmsWithEase', info, true)}
       {menuDiv('/', mug)}
