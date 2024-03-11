@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from rest_framework.views import APIView 
 from rest_framework.response import Response 
 import firebase_admin
@@ -57,6 +58,46 @@ def add_problem_view(request):
         problem.save()
 
     return render(request, 'add_problem.html')
+
+
+@login_required
+def delete_article_view(request, fire_id):
+
+    try:
+        Firebase.db.collection('articles').document(fire_id).delete()
+        fire_msg = "FireBase: DELETE successful"
+    except Exception as err:
+        fire_msg = f"FireBase: {err}"
+
+    try:
+        article = Article.objects.filter(fire_id=fire_id)
+        if article.exists():
+            article.delete()
+        postgre_msg = "Postgre: DELETE successful"
+    except Exception as err:
+        postgre_msg = f"Postgre: {err}"
+
+    return HttpResponse(f"{fire_msg}\n{postgre_msg}", content_type="text/plain")
+
+
+@login_required
+def delete_problem_view(request, fire_id):
+
+    try:
+        Firebase.db.collection('problems').document(fire_id).delete()
+        fire_msg = "FireBase: DELETE successful"
+    except Exception as err:
+        fire_msg = "FireBase: " + err
+
+    try:
+        problem = Problem.objects.filter(fire_id=fire_id)
+        if problem.exists():
+            problem.delete()
+        postgre_msg = "Postgre: DELETE successful"
+    except Exception as err:
+        postgre_msg = "Postgre: " + err
+
+    return HttpResponse(f"{fire_msg}\n{postgre_msg}", content_type="text/plain")
 
 
 class Utils:

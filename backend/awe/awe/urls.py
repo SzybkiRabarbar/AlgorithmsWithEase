@@ -16,12 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from site_content.views import add_article_view, add_problem_view
+from site_content.views import add_article_view, add_problem_view, \
+    delete_article_view, delete_problem_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('add/article', add_article_view, name='Add article'),
     path('add/problem', add_problem_view, name='Add problem'),
+    path('del/article/<str:fire_id>', delete_article_view, name='Delete article'),
+    path('del/problem/<str:fire_id>', delete_problem_view, name='Delete article'),
     path('api/content/', include('site_content.urls')),
     path('api/', include('postgre_manager.urls'))
 ]
