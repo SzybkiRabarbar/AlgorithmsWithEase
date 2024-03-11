@@ -68,6 +68,7 @@ class Utils:
 
         for key in ['title', 'group_id']:
             result[key] = form[key]
+        result['content'] = {}
 
         counter = 0
         while True:
@@ -78,8 +79,8 @@ class Utils:
                 break
 
             type = form[id_]
-            result[order] = [type, {}]
-            content_dict = result[order][1]
+            result['content'][order] = [type, {}]
+            content_dict = result['content'][order][1]
 
             match type:
                 case '0':  # text
