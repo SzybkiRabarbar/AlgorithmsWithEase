@@ -4,6 +4,7 @@ import './GroupDetail.scss'
 import { Link, useParams } from 'react-router-dom'
 import FetchDataFromServer from '../../utils/FetchDataFromServer';
 import ArticleDetailInterface from '../../interfaces/ArticleDetailInterface';
+import Loading from '../../components/loading/Loading';
 
 function GroupDetail() {
   const { id } = useParams();
@@ -16,6 +17,9 @@ function GroupDetail() {
 
   return (
     <div className='GroupDetail'>
+      {articlesList === null &&
+        <Loading />
+      }
       {articlesList &&
         articlesList.map((obj, index) => (
           <div key={ index } className='article-item'>

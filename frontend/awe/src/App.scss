@@ -13,7 +13,8 @@
 .container {
   position: relative;
   width: 92%;
-  height: 90vh;
+  height: 100%;
+  max-height: calc(100vh - 80px);
   padding: 0% 2%;
   border-radius: 20px;
   top: 50%;

@@ -12,6 +12,7 @@ import FetchDataFromServer from './utils/FetchDataFromServer';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Article from './pages/article/Article';
+import Loading from './components/loading/Loading';
 
 function App() {
   const [groupsData, setGroupsData] = 
@@ -27,7 +28,7 @@ function App() {
         <Nav />
         <div className="container">
           {groupsData === null && <div className="content">
-            <div>Loading...</div>  {/* TODO better loading */}
+            <Loading />
           </div>}
           {groupsData && <div className="content">
             <Routes>

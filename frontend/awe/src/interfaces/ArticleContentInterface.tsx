@@ -1,15 +1,15 @@
 interface ArticleContentInterface {
   title: string;
   group: number;
-  content: {[key: string]: [string, ContentItem]}
+  content: {[key: string]: [string, ArticleContentItemInferface]}
 }
 
-interface ContentItem {
-  text?: string;
-  src?: string;
-  alt?: string;
-  url?: string;
-  note?: string;
+export interface ArticleContentItemInferface {
+  text: string;
+  src: string;
+  alt: string;
+  url: string;
+  note: string;
 }
 
 export default ArticleContentInterface
