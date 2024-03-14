@@ -5,11 +5,11 @@ interface ArticleContentInterface {
 }
 
 export interface ArticleContentItemInferface {
-  text: string;
-  src: string;
-  alt: string;
-  url: string;
-  note: string;
+  text?: string;
+  src?: string;
+  alt?: string;
+  url?: string;
+  note?: string;
 }
 
 export default ArticleContentInterface

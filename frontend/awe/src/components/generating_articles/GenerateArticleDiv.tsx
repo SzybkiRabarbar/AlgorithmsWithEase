@@ -35,7 +35,7 @@ const imgElement = (props: {content: ArticleContentItemInferface}) => {
 const videoElement = (props: {content: ArticleContentItemInferface}) => {
   const url = props.content.url;
   return (
-    <iframe src={ url }></iframe>
+    <iframe data-testid={ url } src={ url }></iframe>
   );
 }
 

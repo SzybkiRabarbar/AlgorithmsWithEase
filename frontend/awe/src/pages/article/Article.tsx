@@ -3,7 +3,7 @@ import './Article.scss'
 import { useEffect, useState } from 'react';
 import FetchDataFromServer from '../../utils/FetchDataFromServer';
 import ArticleContentInterface from '../../interfaces/ArticleContentInterface';
-import GenereteArticleDiv from '../../components/generating_articles/GenereteArticleDiv';
+import GenereteArticleDiv from '../../components/generating_articles/GenerateArticleDiv';
 import Loading from '../../components/loading/Loading';
 
 function Article() {

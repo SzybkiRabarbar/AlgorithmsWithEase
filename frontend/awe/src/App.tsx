@@ -4,14 +4,15 @@ import Nav from './components/nav/Nav';
 import Home from './pages/home/Home';
 import Test from './pages/test/Test';
 import Groups from './pages/groups/Groups';
-import Progres from './pages/progres/Progress';
 import GroupDetail from './pages/group_detail/GroupDetail';
+import Article from './pages/article/Article';
+import Info from './pages/info/Info';
+import Map from './pages/map/Map';
+
 import GroupsDataInterface from './interfaces/GroupsDataInterface';
 import FetchDataFromServer from './utils/FetchDataFromServer';
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Article from './pages/article/Article';
 import Loading from './components/loading/Loading';
 
 function App() {
@@ -41,8 +42,11 @@ function App() {
               <Route path="/groups"
                 element={<Groups groupsData={groupsData}/>}
               />
-              <Route path="/progress"
-                element={<Progres />}
+              <Route path="/map"
+                element={<Map />}
+              />
+              <Route path="/info"
+                element={<Info />}
               />
               <Route path="/test"
                 element={<Test />}

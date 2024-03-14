@@ -23,13 +23,15 @@ function Nav() {
   const menuDiv = (url: string, asset: string, isExt: boolean=false) => {
     counter += 1;
     return (
-        <div className={`menu${counter} ${isVisible ? 'visible' : 'hidden'}`}>
+        <div className={`menu${counter} ${isVisible ? 'visible' : 'hidden'}`}
+        data-testid={ 'div' + url }>
           <Link 
             to={url}
+            data-testid={ "link" + url}
             target={isExt ? '_blank' : '_self'}
             rel={isExt ? 'noopener noreferrer' : ''}
           >
-            <img src={asset} alt="" width="40" height="40" 
+            <img src={asset} alt={ "img " + url } width="40" height="40" 
               onClick={() => toogleVisibility()}>
             </img>
           </Link>
@@ -45,11 +47,13 @@ function Nav() {
           onClick={() => toogleVisibility()}>
         </img>
       </div>
-      {menuDiv('/', house)}
-      {menuDiv('/groups', barsProgress)}
-      {menuDiv('/test', map)}
-      {menuDiv('https://github.com/SzybkiRabarbar/AlgorithmsWithEase', info, true)}
-      {menuDiv('/', mug)}
+      <div data-testid="menu-items">
+        {menuDiv('/', house)}
+        {menuDiv('/groups', barsProgress)}
+        {menuDiv('/map', map)}
+        {menuDiv('/info', info)}
+        {menuDiv('https://github.com/SzybkiRabarbar/AlgorithmsWithEase', mug, true)}
+      </div>
     </>
   );
 }
