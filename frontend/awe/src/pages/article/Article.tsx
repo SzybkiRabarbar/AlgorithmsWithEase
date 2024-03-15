@@ -21,7 +21,9 @@ function Article() {
         <Loading />
       }
       {siteContent &&
-        siteContent.title
+        <div className='header'>
+          <span>{ siteContent.title }<hr /></span>
+        </div>
       }
       {siteContent &&
         Object.entries(siteContent.content).map((obj, index) => (

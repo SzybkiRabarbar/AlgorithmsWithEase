@@ -1,10 +1,10 @@
 import './Nav.scss';
-import burger from '../../assets/bars-solid-400.svg';
-import house from '../../assets/house-solid.svg';
-import barsProgress from '../../assets/bars-progress-solid.svg';
-import map from '../../assets/map-solid.svg';
-import info from '../../assets/info-solid.svg';
-import mug from '../../assets/mug-hot-solid.svg';
+import burger from '../../assets/7e7e7e/bars-solid.svg';
+import house from '../../assets/7e7e7e/house-solid.svg';
+import barsProgress from '../../assets/7e7e7e/bars-progress-solid.svg';
+import map from '../../assets/7e7e7e/map-solid.svg';
+import info from '../../assets/7e7e7e/info-solid.svg';
+import mug from '../../assets/7e7e7e/mug-hot-solid.svg';
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';

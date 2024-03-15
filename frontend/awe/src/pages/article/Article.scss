@@ -1,0 +1,87 @@
+@use '../../utils/_colors.scss' as *;
+
+.Article {
+
+    @mixin flex-center {
+        display: flex;
+        justify-content: center;
+    }
+
+    .header {
+        @include flex-center;
+        margin-top: 50px;
+
+        span {
+            text-align: left;
+            max-width: 800px;
+            width: 90%;
+
+            font-size: 40px;
+            line-height: 46px;
+            font-weight: 600;
+            letter-spacing: -2px;
+            color: $color-50;
+
+            hr {
+                margin-top: 3px;
+            }
+        }
+    }
+
+    .text-container {
+        @include flex-center;
+
+        .text-div {
+            text-align: left;
+            max-width: 600px;
+
+            font-size: 18px;
+            line-height: 27px;
+        }
+
+        .bold {
+            font-weight: 600;
+        }
+
+        a {
+            color: $color-200;
+            font-weight: 300;
+        }
+    }
+
+    .img-container {
+        @include flex-center;
+
+        img {
+            box-shadow: 0vmin 0vmin 1vmin $color-900;
+            max-width: 95%;
+            height: auto;
+            border-radius: 15px;
+        }
+    }
+
+    .video-container {
+        @include flex-center;
+
+        iframe {
+            box-shadow: 0vmin 0vmin 1vmin $color-900;
+            border-radius: 15px;
+        }
+    }
+
+    .note-container {
+        @include flex-center;
+
+        blockquote {
+            color: $color-200;
+            max-width: 500px;
+            background-color: $color-700;
+            text-align: left;
+            font-weight: 300;
+            padding-left: 15px;
+            border-left: 3px solid $color-900;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+    }
+}
