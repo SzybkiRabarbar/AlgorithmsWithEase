@@ -3,28 +3,21 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from rest_framework.views import APIView 
 from rest_framework.response import Response 
-import firebase_admin
-from firebase_admin import credentials, firestore
 from postgre_manager.models import Article, Problem
-
-
-class Firebase():
-    cred = credentials.Certificate('site_content/creds/cred-firebase-adminsdk.json')
-    fireapp = firebase_admin.initialize_app(cred)
-    db = firestore.client()
+from site_content.firebase_conn.firebase_conn import firebase_instance
 
 
 class ArticleByIdView(APIView):
 
     def get(self, request, article_id=None):
-        article = Firebase.db.collection("articles").document(article_id).get()
+        article = firebase_instance.db.collection("articles").document(article_id).get()
         return Response(article.to_dict())
 
 
 class ProblemByIdView(APIView):
     
     def get(self, request, question_id=None):
-        problem = Firebase.db.collection("problems").document(question_id).get()
+        problem = firebase_instance.db.collection("problems").document(question_id).get()
         return Response(problem.to_dict())
 
 
@@ -64,7 +57,7 @@ def add_problem_view(request):
 def delete_article_view(request, fire_id):
 
     try:
-        Firebase.db.collection('articles').document(fire_id).delete()
+        firebase_instance.db.collection('articles').document(fire_id).delete()
         fire_msg = "FireBase: DELETE successful"
     except Exception as err:
         fire_msg = f"FireBase: {err}"
@@ -84,7 +77,7 @@ def delete_article_view(request, fire_id):
 def delete_problem_view(request, fire_id):
 
     try:
-        Firebase.db.collection('problems').document(fire_id).delete()
+        firebase_instance.db.collection('problems').document(fire_id).delete()
         fire_msg = "FireBase: DELETE successful"
     except Exception as err:
         fire_msg = "FireBase: " + err
@@ -141,7 +134,7 @@ class Utils:
 
     @staticmethod
     def add_data_to_firestore(collection: str, data: dict) -> str:
-        doc_ref = Firebase.db.collection(collection).document()
+        doc_ref = firebase_instance.db.collection(collection).document()
         doc_ref.set(data)
         return doc_ref.id
 
