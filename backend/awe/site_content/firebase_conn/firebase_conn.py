@@ -25,7 +25,7 @@ class Firebase():
         """
         while True:
             self.db.collection('refresh').document('_').get().to_dict()
-            time.sleep(90)
+            time.sleep(60)
 
 
 firebase_instance = Firebase()
