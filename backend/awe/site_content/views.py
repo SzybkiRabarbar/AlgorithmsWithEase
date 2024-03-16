@@ -30,7 +30,8 @@ def add_article_view(request):
         article = Article(
             name=request.POST.get('name'),
             fire_id=fire_id,
-            group_id=article_data['group_id']
+            group_id=article_data['group_id'],
+            z_index=request.POST.get('z_index'),
         )
         article.save()
 
@@ -46,7 +47,7 @@ def add_problem_view(request):
         problem = Problem(
             name=request.POST.get('name'),
             fire_id=fire_id,
-            group_id=problem_data['group_id']
+            group_id=problem_data['group_id'],
         )
         problem.save()
 
@@ -129,6 +130,8 @@ class Utils:
                 case '4':  # note
                     content_dict['note'] = form[id_ + 'note']
             
+            content_dict['afterspace'] = form[id_ + 'afterspace']
+            
             counter += 1
         return result
 
@@ -144,7 +147,7 @@ class Utils:
         form_ = dict(request.POST.items())
 
         for key in ['problem_url', 'group_id', 'important',
-                    'solution_url', 'video_url']:
+                    'solution', 'video_url', 'difficulty']:
             if key in form_:
                 result[key] = form_[key]
         

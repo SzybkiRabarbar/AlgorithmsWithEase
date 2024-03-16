@@ -19,6 +19,10 @@ class Firebase():
         scheduler_thread.start()
         
     def refresh_connection(self):
+        """
+        Every 90 seccond reads data from firebase to keep session alive,
+        which eliminates the long loading time.
+        """
         while True:
             self.db.collection('refresh').document('_').get().to_dict()
             time.sleep(90)
