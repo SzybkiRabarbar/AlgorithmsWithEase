@@ -7,9 +7,20 @@
         justify-content: center;
     }
 
+    .container-container {
+        visibility: hidden;
+        border-radius: 30px;
+    }
+
+    .visible {
+        visibility: visible;
+        opacity: 1;
+    }
+
     .header {
         @include flex-center;
         margin-top: 50px;
+        animation: 1s fadeIn 0s ease-in-out;
 
         span {
             text-align: left;
@@ -43,20 +54,43 @@
             font-weight: 600;
         }
 
+        .head {
+            color: $color-50;
+            font-weight: 500;
+        }
+
         a {
             color: $color-200;
-            font-weight: 300;
+            font-weight: 400;
         }
     }
 
     .img-container {
         @include flex-center;
 
-        img {
+        .img-bg {
             box-shadow: 0vmin 0vmin 1vmin $color-900;
-            max-width: 95%;
-            height: auto;
+            background-color: $color-900;
             border-radius: 15px;
+            width: auto;
+            transition: transform .3s ease-in-out;
+
+
+            img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 15px;
+            }
+
+            .alt-text {
+                color: $color-400;
+                margin-bottom: 5px;
+            }
+        }
+
+        .img-bg:hover {
+            box-shadow: 0vmin 0vmin 1vmin $color-800;
+            transform: scale(1.1);
         }
     }
 
@@ -66,6 +100,8 @@
         iframe {
             box-shadow: 0vmin 0vmin 1vmin $color-900;
             border-radius: 15px;
+            border-color: $color-400;
+            border-style: solid;
         }
     }
 
@@ -84,4 +120,36 @@
             border-bottom-right-radius: 15px;
         }
     }
+
+    .space-0 {
+        @include flex-center;
+
+        height: 10px;
+    }
+    .space-1 {
+        @include flex-center;
+
+        height: 20px;
+    }
+    .space-2 {
+        @include flex-center;
+
+        height: 40px;
+    }
+}
+
+@keyframes changeBackground {
+    from {background-color: $color-900;}
+    to {background-color: transparent;}
+}
+
+@keyframes fadeIn {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
 }

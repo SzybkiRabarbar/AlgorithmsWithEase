@@ -1,21 +1,37 @@
 import { ArticleContentItemInferface } from '../../interfaces/ArticleContentInterface'
+import { useEffect, useState } from 'react';
 
 function GenereteArticleDiv(
   props: {
     obj: [string, ArticleContentItemInferface],
     index: number
   }) {
+  const [isVisible, setIsVisible] = useState('');
 
-    const type: number = +props.obj[0];
-    const content: ArticleContentItemInferface = props.obj[1];
-    const index = props.index;
-    const elements = [textElement, imgElement, videoElement, codeElement, noteElement];
-    const Element = elements[type];
-            
+  const type: number = +props.obj[0];
+  const content: ArticleContentItemInferface = props.obj[1];
+  const index = props.index;
+  const elements = [textElement, ImgElement, videoElement, codeElement, noteElement];
+  const Element = elements[type];
+
+  const changeVisibility = async () => {
+    const waitTime = (index) * 300 + 500; 
+
+    await new Promise((resolve) => setTimeout(resolve, waitTime));
+
+    setIsVisible(' visible');
+  };
+  changeVisibility();
+
   return (
-    <div key={ index }>
-      <Element content={content} />
-    </div>
+    <>
+      <div key={ index } className={'container-container' + isVisible}
+        style={{ animation: `1s fadeIn ${(index + 1) * 0.3}s ease-in-out,
+                             3s changeBackground ${(index + 1) * 0.3}s ease-in-out` }}>
+        <Element content={content} />
+      </div>
+      <div className={ "space-" + content.afterspace }></div>
+    </>
   )
 }
 
@@ -32,7 +48,8 @@ const textElement = (props: {content: ArticleContentItemInferface}) => {
   );
 }
 
-const imgElement = (props: {content: ArticleContentItemInferface}) => {
+const ImgElement = (props: {content: ArticleContentItemInferface}) => {
+  const [imgWidth, setImgWidth] = useState(0);
 
   const handleImageClick = (event: React.MouseEvent<HTMLImageElement>) => {
     const img = event.currentTarget;
@@ -41,12 +58,24 @@ const imgElement = (props: {content: ArticleContentItemInferface}) => {
     }
   };
 
-  const src = props.content.src;
+  const src = props.content.src ? props.content.src : '';
   const alt = props.content.alt;
+
+  const applyWidth = () => {
+    const img = document.getElementById(src);
+    if (img && img.clientWidth != imgWidth) {
+      setImgWidth(img.clientWidth);
+    };
+    return imgWidth;
+  };
 
   return (
     <div className='img-container'>
-      <img src={ src } alt={ alt } onClick={handleImageClick}></img>
+      <div className='img-bg'>
+        <img id={ src } src={ src } alt={ src } onClick={handleImageClick}></img>
+        <br />
+        <div className='alt-text' style={{maxWidth: applyWidth()}} >{ alt }</div>
+      </div>
     </div>
   );
 }
@@ -56,13 +85,14 @@ const videoElement = (props: {content: ArticleContentItemInferface}) => {
   return (
     <div className='video-container'>
       <iframe data-testid={ url } src={ url } width="560" height="315"
-      title="YouTube video player" allowFullScreen></iframe>
+        title="YouTube video player"
+        allowFullScreen></iframe>
     </div>
   );
 }
 
 const codeElement = (props: {content: ArticleContentItemInferface}) => {
-
+  // TODO
   const url = props.content.url;
 
   return (

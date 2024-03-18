@@ -6,11 +6,11 @@ import { ArticleContentItemInferface } from '../../../interfaces/ArticleContentI
 describe('GenereteArticleDiv', () => {
   it('renders the correct component for each type', () => {
     const articleContentItems: Array<[string, ArticleContentItemInferface]> = [
-      ['0', { text: 'Test text' }],
-      ['1', { src: 'Test src', alt: 'Test alt' }],
-      ['2', { url: 'Test url' }],
-      ['3', { url: 'Test url' }],
-      ['4', { note: 'Test note' }],
+      ['0', { text: 'Test text', afterspace: 0 }],
+      ['1', { src: 'Test src', alt: 'Test alt', afterspace: 0 }],
+      ['2', { url: 'Test url', afterspace: 0 }],
+      ['3', { url: 'Test url', afterspace: 0 }],
+      ['4', { note: 'Test note', afterspace: 0 }],
     ];
 
     articleContentItems.forEach(([type, content], index: number) => {

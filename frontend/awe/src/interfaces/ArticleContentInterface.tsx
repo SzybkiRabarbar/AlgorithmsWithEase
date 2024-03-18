@@ -10,6 +10,7 @@ export interface ArticleContentItemInferface {
   alt?: string;
   url?: string;
   note?: string;
+  afterspace: number;
 }
 
 export default ArticleContentInterface

@@ -20,7 +20,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: $color-800;
+  background: $color-800;
+  background: radial-gradient($color-900, $color-800);
   border: 2px solid $color-400;
   box-shadow: 0vmin 0vmin 3vmin $color-800;
 
