@@ -1,4 +1,6 @@
 import { ArticleContentItemInferface } from '../../interfaces/ArticleContentInterface'
+import FetchDataFromGitRaw from '../../utils/FetchDataFromGitRaw';
+import Code from '../code/Code';
 import { useEffect, useState } from 'react';
 
 function GenereteArticleDiv(
@@ -11,7 +13,7 @@ function GenereteArticleDiv(
   const type: number = +props.obj[0];
   const content: ArticleContentItemInferface = props.obj[1];
   const index = props.index;
-  const elements = [textElement, ImgElement, videoElement, codeElement, noteElement];
+  const elements = [textElement, ImgElement, videoElement, CodeElement, noteElement];
   const Element = elements[type];
 
   const changeVisibility = async () => {
@@ -91,13 +93,21 @@ const videoElement = (props: {content: ArticleContentItemInferface}) => {
   );
 }
 
-const codeElement = (props: {content: ArticleContentItemInferface}) => {
-  // TODO
+const CodeElement = (props: {content: ArticleContentItemInferface}) => {
+  const [codeData, setCodeData] = useState<string>('');
+
   const url = props.content.url;
+  useEffect(() => {
+    {url &&
+      FetchDataFromGitRaw(url, setCodeData)
+    }
+  }, [])
 
   return (
     <div className='code-container'>
-      <code></code>
+        <Code language='python'>
+          { codeData }
+        </Code>
     </div>
   );
 }

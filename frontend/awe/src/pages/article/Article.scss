@@ -74,6 +74,7 @@
             border-radius: 15px;
             width: auto;
             transition: transform .3s ease-in-out;
+            max-width: 700px;
 
 
             img {
@@ -102,6 +103,15 @@
             border-radius: 15px;
             border-color: $color-400;
             border-style: solid;
+        }
+    }
+
+    .code-container {
+        @include flex-center;
+
+        pre {
+            max-width: 800px;
+            border-radius: 15px;
         }
     }
 
