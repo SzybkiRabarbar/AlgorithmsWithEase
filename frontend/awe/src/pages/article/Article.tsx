@@ -5,6 +5,7 @@ import FetchDataFromServer from '../../utils/FetchDataFromServer';
 import ArticleContentInterface from '../../interfaces/ArticleContentInterface';
 import GenereteArticleDiv from '../../components/generating_articles/GenerateArticleDiv';
 import Loading from '../../components/loading/Loading';
+import ButtonsInArticle from '../../components/buttons_in_article/ButtonsInArticle';
 
 function Article() {
   const { fire_id } = useParams();
@@ -20,16 +21,20 @@ function Article() {
       {siteContent === null &&
         <Loading />
       }
-      {siteContent &&
-        <div className='header'>
-          <span>{ siteContent.title }<hr /></span>
-        </div>
-      }
-      {siteContent &&
-        Object.entries(siteContent.content).map((obj, index) => (
-          <GenereteArticleDiv obj={obj[1]} index={index} />
-        ))
-      }
+      {siteContent && fire_id && (
+        <>
+          <ButtonsInArticle position={'up'}
+            group_id={siteContent.group_id} fire_id={fire_id}/>
+          <div className='header'>
+            <span>{ siteContent.title }<hr /></span>
+          </div>
+          {Object.entries(siteContent.content).map((obj, index) => (
+            <GenereteArticleDiv obj={obj[1]} index={index} />
+          ))}
+          <ButtonsInArticle position={'down'}
+            group_id={siteContent.group_id} fire_id={fire_id}/>
+        </>
+      )}
     </div>
   )
 }

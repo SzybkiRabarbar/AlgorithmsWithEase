@@ -1,6 +1,6 @@
 interface ArticleContentInterface {
   title: string;
-  group: number;
+  group_id: number;
   content: {[key: string]: [string, ArticleContentItemInferface]}
 }
 

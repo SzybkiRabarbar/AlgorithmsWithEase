@@ -19,7 +19,7 @@
 
     .header {
         @include flex-center;
-        margin-top: 50px;
+        // margin-top: 50px;
         animation: 1s fadeIn 0s ease-in-out;
 
         span {
