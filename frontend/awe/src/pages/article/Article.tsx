@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom'
 import './Article.scss'
-import { useEffect, useState } from 'react';
 import FetchDataFromServer from '../../utils/FetchDataFromServer';
 import ArticleContentInterface from '../../interfaces/ArticleContentInterface';
 import GenereteArticleDiv from '../../components/generating_articles/GenerateArticleDiv';
@@ -9,30 +8,27 @@ import ButtonsInArticle from '../../components/buttons_in_article/ButtonsInArtic
 
 function Article() {
   const { fire_id } = useParams();
-  const [siteContent, setSiteContent] =
-    useState<ArticleContentInterface | null>(null);
-  
-  useEffect(() => {
-    FetchDataFromServer('/api/content/article/' + fire_id, setSiteContent);
-  }, [])
+
+  const { data, error, isLoading } = 
+    FetchDataFromServer<ArticleContentInterface>('/api/content/article/' + fire_id);
     
   return (
     <div className='Article'>
-      {siteContent === null &&
+      {isLoading &&
         <Loading />
       }
-      {siteContent && fire_id && (
+      {data && fire_id && (
         <>
           <ButtonsInArticle position={'up'}
-            group_id={siteContent.group_id} fire_id={fire_id}/>
+            group_id={data.group_id} fire_id={fire_id}/>
           <div className='header'>
-            <span>{ siteContent.title }<hr /></span>
+            <span>{ data.title }<hr /></span>
           </div>
-          {Object.entries(siteContent.content).map((obj, index) => (
+          {Object.entries(data.content).map((obj, index) => (
             <GenereteArticleDiv obj={obj[1]} index={index} />
           ))}
           <ButtonsInArticle position={'down'}
-            group_id={siteContent.group_id} fire_id={fire_id}/>
+            group_id={data.group_id} fire_id={fire_id}/>
         </>
       )}
     </div>

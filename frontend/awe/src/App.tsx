@@ -12,26 +12,22 @@ import Map from './pages/map/Map';
 import GroupsDataInterface from './interfaces/GroupsDataInterface';
 import FetchDataFromServer from './utils/FetchDataFromServer';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import Loading from './components/loading/Loading';
 
 function App() {
-  const [groupsData, setGroupsData] = 
-    useState<GroupsDataInterface | null>(null);
 
-  useEffect(() => {
-    FetchDataFromServer('/api/groups/', setGroupsData);
-  }, []);
+  const {data, error, isLoading} = 
+    FetchDataFromServer<GroupsDataInterface>('/api/groups/');
 
   return (
     <Router>
       <div className="App">
         <Nav />
         <div className="container">
-          {groupsData === null && <div className="content">
+          {isLoading && <div className="content">
             <Loading />
           </div>}
-          {groupsData && <div className="content">
+          {data && <div className="content">
             <Routes>
               <Route path="/article/:fire_id" 
                 element={<Article />}
@@ -40,7 +36,7 @@ function App() {
                 element={<GroupDetail />}
               />
               <Route path="/groups"
-                element={<Groups groupsData={groupsData}/>}
+                element={<Groups groupsData={data}/>}
               />
               <Route path="/map"
                 element={<Map />}

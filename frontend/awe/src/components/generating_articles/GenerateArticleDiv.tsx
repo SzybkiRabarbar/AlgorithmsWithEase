@@ -1,7 +1,8 @@
 import { ArticleContentItemInferface } from '../../interfaces/ArticleContentInterface'
-import FetchDataFromGitRaw from '../../utils/FetchDataFromGitRaw';
+import FetchData from '../../utils/FetchData';
 import Code from '../code/Code';
 import { useEffect, useState } from 'react';
+import Loading from '../loading/Loading';
 
 function GenereteArticleDiv(
   props: {
@@ -94,21 +95,23 @@ const videoElement = (props: {content: ArticleContentItemInferface}) => {
 }
 
 const CodeElement = (props: {content: ArticleContentItemInferface}) => {
-  const [codeData, setCodeData] = useState<string>('');
 
   const url = props.content.url;
-  useEffect(() => {
-    {url &&
-      FetchDataFromGitRaw(url, setCodeData)
-    }
-  }, [])
+  const { data, error, isLoading } = FetchData<string>(url ? url : '');
 
   return (
-    <div className='code-container'>
-        <Code language='python'>
-          { codeData }
-        </Code>
-    </div>
+    <>
+      {isLoading && 
+        <Loading />
+      }
+      {data && 
+        <div className='code-container'>
+          <Code language='python'>
+            { data }
+          </Code>
+        </div>
+      }
+    </>
   );
 }
 

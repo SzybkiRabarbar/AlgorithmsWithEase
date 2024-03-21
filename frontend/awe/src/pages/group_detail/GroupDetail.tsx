@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import './GroupDetail.scss'
 
 import { Link, useParams } from 'react-router-dom'
@@ -8,20 +7,17 @@ import Loading from '../../components/loading/Loading';
 
 function GroupDetail() {
   const { id } = useParams();
-  const [articlesList, setGroupData] = 
-    useState<ArticleDetailInterface[] | null>(null);
 
-  useEffect(() =>{
-    FetchDataFromServer('/api/articles/group/' + id, setGroupData);
-  }, []);
+  const { data, error, isLoading } = 
+    FetchDataFromServer<ArticleDetailInterface[]>('/api/articles/group/' + id);
 
   return (
     <div className='GroupDetail'>
-      {articlesList === null &&
+      {isLoading &&
         <Loading />
       }
-      {articlesList &&
-        articlesList.map((obj, index) => (
+      {data &&
+        data.map((obj, index) => (
           <div key={ index } className='article-item'>
             <Link to={"/article/" + obj.fire_id} target='_self'>
               <h3>{ obj.name }</h3>

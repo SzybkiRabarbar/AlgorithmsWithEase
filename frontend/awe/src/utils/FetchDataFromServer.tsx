@@ -1,13 +1,9 @@
-import axios from "axios";
-import { Dispatch, SetStateAction } from "react";
+import FetchData from "./FetchData";
 
 const prefix = 'http://localhost:8000';
 
-async function FetchDataFromServer
-    (url: string, setFunc: Dispatch<SetStateAction<any>>) {
-  return await axios.get(prefix + url)
-    .then((response) => {setFunc(response.data)})
-    .catch((error) => {console.log(error)})
+function FetchDataFromSerer<T>(url: string) {
+  return FetchData<T>(prefix + url)
 }
 
-export default FetchDataFromServer
+export default FetchDataFromSerer

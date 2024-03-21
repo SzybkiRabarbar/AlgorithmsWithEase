@@ -5,13 +5,7 @@ import FetchDataFromServer from '../FetchDataFromServer';
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-// Mock console.log
-const consoleSpy = jest.spyOn(console, 'log');
-
 describe('FetchDataFromServer', () => {
-  beforeEach(() => {
-    consoleSpy.mockClear();
-  });
 
   it('fetches data from the server and returns it', async () => {
     const data = {
@@ -22,10 +16,9 @@ describe('FetchDataFromServer', () => {
     mockedAxios.get.mockResolvedValue({ data });
 
     const url = '/api/';
-    const setFunc = jest.fn();
-    await FetchDataFromServer(url, setFunc);
+    const result = FetchDataFromServer(url);
 
-    expect(setFunc).toHaveBeenCalledWith(data);
+    expect(result.data).toEqual(data);
   });
 
   it('logs an error when the request fails', async () => {
@@ -33,9 +26,10 @@ describe('FetchDataFromServer', () => {
     mockedAxios.get.mockRejectedValue(new Error(errorMessage));
 
     const url = '/api/';
-    const setFunc = jest.fn();
-    await FetchDataFromServer(url, setFunc);
-
-    expect(console.log).toHaveBeenCalledWith(new Error(errorMessage));
+    try {
+      FetchDataFromServer(url);
+    } catch (error) {
+      expect(error).toEqual(new Error(errorMessage));
+    }
   });
 });
