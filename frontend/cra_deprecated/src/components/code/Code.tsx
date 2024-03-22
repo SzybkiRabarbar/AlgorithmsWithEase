@@ -1,5 +1,5 @@
-import CodeParamsInterface from '@/utils/interfaces/CodeParamsInterface';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import CodeParamsInterface from '../../interfaces/CodeParamsInterface';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const customStyle = {

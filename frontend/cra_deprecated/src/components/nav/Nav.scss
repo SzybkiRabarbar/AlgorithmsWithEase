@@ -1,9 +1,11 @@
+@use '../../utils/_colors.scss' as *;
+
 .default {
     left: 10px;
     position: absolute;
     width: 60px;
     height: 60px;
-    border-radius: 35px;
+    border-radius: 30px;
     border: 2px solid $color-400;
     z-index: 100;
     display: flex;

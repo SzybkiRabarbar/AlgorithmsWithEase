@@ -1,0 +1,28 @@
+@use '../../../utils/fadeIn';
+
+.Article {
+
+    .header {
+
+        display: flex;
+        justify-content: center;
+        animation: 1s fadeIn 0s ease-in-out;
+
+        span {
+            text-align: left;
+            max-width: 800px;
+            width: 90%;
+
+            font-size: 40px;
+            line-height: 46px;
+            font-weight: 600;
+            letter-spacing: -2px;
+            color: $color-50;
+
+            hr {
+                margin-top: 3px;
+            }
+        }
+    }
+
+}
