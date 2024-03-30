@@ -1,19 +1,14 @@
-.default {
+@mixin default {
     left: 10px;
     position: absolute;
     width: 60px;
     height: 60px;
     border-radius: 35px;
     border: 2px solid $color-400;
-    z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;
     top: 10px;
-
-    img {
-        width: 70%;
-    }
 
     &:hover {
         border-color: $color-50;
@@ -21,7 +16,8 @@
 }
 
 .Nav {
-    @extend .default;
+    @include default;
+    z-index: 100;
     background-color: $color-700;
     transition: border-color 0.9s;
 
@@ -33,7 +29,7 @@
 @for $i from 1 to 7 {
 
     .menu#{$i} {
-        @extend .default;
+        @include default;
         background-color: $color-200;
         z-index: 99 - $i;
         opacity: 0;
@@ -52,4 +48,11 @@
         top: 10px + 70px * $i;
         visibility: visible;
     }
+}
+
+
+.user.visible {
+    opacity: 1;
+    left: 10px + 70px;
+    visibility: visible;
 }

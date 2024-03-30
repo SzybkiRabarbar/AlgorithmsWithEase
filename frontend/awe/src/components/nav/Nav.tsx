@@ -5,6 +5,7 @@ import './Nav.scss';
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import LoginButton from '../login-button/LoginButton';
 
 
 function Nav() {
@@ -46,12 +47,14 @@ function Nav() {
           onClick={() => toogleVisibility()}
         />
       </div>
+      <LoginButton isVisible={isVisible} />
       <div data-testid="menu-items">
         {menuDiv('/', 'house-solid')}
         {menuDiv('/groups', 'bars-progress-solid')}
         {menuDiv('/map', 'map-solid')}
         {menuDiv('/info', 'info-solid')}
-        {menuDiv('https://github.com/SzybkiRabarbar/AlgorithmsWithEase', 'mug-hot-solid', true)}
+        {menuDiv('https://github.com/SzybkiRabarbar/AlgorithmsWithEase',
+          'mug-hot-solid', true)}
       </div>
     </>
   );

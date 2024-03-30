@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import styles from "./layout.module.scss";
 import Nav from "@/components/nav/Nav";
-import User from "@/components/user/User";
 
 
 export const metadata: Metadata = {
@@ -24,7 +23,6 @@ export default function RootLayout({
           <Nav />
           <div className={styles.container} data-testid="container">
             <div className={styles.content} data-testid="content">
-              <User />
               { children }
             </div>
           </div>
