@@ -25,6 +25,8 @@ urlpatterns = [
     path('add/problem', add_problem_view, name='Add problem'),
     path('del/article/<str:fire_id>', delete_article_view, name='Delete article'),
     path('del/problem/<str:fire_id>', delete_problem_view, name='Delete article'),
+
     path('api/content/', include('site_content.urls')),
-    path('api/', include('postgre_manager.urls'))
+    path('api/', include('postgre_manager.urls')),
+    path('api/post/', include('users_progress.urls')),
 ]
