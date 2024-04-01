@@ -1,13 +1,11 @@
+'use client'
+
 import './Nav.scss';
-import burger from '../../assets/bars-solid-400.svg';
-import house from '../../assets/house-solid.svg';
-import barsProgress from '../../assets/bars-progress-solid.svg';
-import map from '../../assets/map-solid.svg';
-import info from '../../assets/info-solid.svg';
-import mug from '../../assets/mug-hot-solid.svg';
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
+import LoginButton from '../login-button/LoginButton';
 
 
 function Nav() {
@@ -23,33 +21,41 @@ function Nav() {
   const menuDiv = (url: string, asset: string, isExt: boolean=false) => {
     counter += 1;
     return (
-        <div className={`menu${counter} ${isVisible ? 'visible' : 'hidden'}`}>
-          <Link 
-            to={url}
-            target={isExt ? '_blank' : '_self'}
-            rel={isExt ? 'noopener noreferrer' : ''}
-          >
-            <img src={asset} alt="" width="40" height="40" 
-              onClick={() => toogleVisibility()}>
-            </img>
-          </Link>
+      <Link 
+        href={url}
+        data-testid={ "link" + url}
+        target={isExt ? '_blank' : '_self'}
+        rel={isExt ? 'noopener noreferrer' : ''}
+      >
+        <div className={`menu${counter} ${isVisible ? 'visible' : 'hidden'}`}
+          data-testid={ 'div' + url }
+        >
+          <Image src={`/7e7e7e/${asset}.svg`} alt={ "img " + url } 
+            width="40" height="40" 
+            onClick={() => toogleVisibility()} 
+          />
         </div>
+      </Link>
     );
   };
 
   return (
     <>
       <div className="Nav">
-        <img src={burger} alt='≡' width="40" height="40" 
+        <Image src='/7e7e7e/bars-solid.svg' alt='≡' width="40" height="40" 
           style={{ transform: `rotate(${rotation}deg)`}}
-          onClick={() => toogleVisibility()}>
-        </img>
+          onClick={() => toogleVisibility()}
+        />
       </div>
-      {menuDiv('/', house)}
-      {menuDiv('/groups', barsProgress)}
-      {menuDiv('/test', map)}
-      {menuDiv('https://github.com/SzybkiRabarbar/AlgorithmsWithEase', info, true)}
-      {menuDiv('/', mug)}
+      <LoginButton isVisible={isVisible} />
+      <div data-testid="menu-items">
+        {menuDiv('/', 'house-solid')}
+        {menuDiv('/groups', 'bars-progress-solid')}
+        {menuDiv('/map', 'map-solid')}
+        {menuDiv('/info', 'info-solid')}
+        {menuDiv('https://github.com/SzybkiRabarbar/AlgorithmsWithEase',
+          'mug-hot-solid', true)}
+      </div>
     </>
   );
 }

@@ -11,6 +11,7 @@ class Article(models.Model):
     name = models.CharField(max_length=255)
     fire_id = models.CharField(max_length=255)
     group = models.ForeignKey(Group, on_delete=models.SET_DEFAULT, default=1)
+    z_index = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

@@ -25,6 +25,10 @@
         <label for="group_id">Group</label><br />
         <input type="number" id="group_id" name="group_id"><br />
 
+        <label for="z_index">Z Index</label><br />
+        <input type="number" id="z_index" name="z_index"><br />
+
+
         <label for="picked">Content</label><br />
         <select id="picked">
             <option value="0">text</option>
@@ -133,6 +137,7 @@
                     ]
                     break;
             }
+            params.push([counter + ":afterspace", 'number']);
             addFields(params);
 
             ++counter;

@@ -1,0 +1,12 @@
+@use 'utils/_colors.scss' as *;
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@300..600&display=swap');
+
+html, body {
+  margin: 0;
+  font-family: 'Inter';
+  font-weight: 300;
+  height: 100%;
+  width: 100%;
+  background-color: $color-900;
+}
+
