@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import styles from "./layout.module.scss";
 import Nav from "@/components/nav/Nav";
+import { UserTokenProvider } from "@/components/user-token-context/UserTokenContext";
 
 
 export const metadata: Metadata = {
@@ -20,12 +21,14 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className={styles.back} data-testid="background">
-          <Nav />
-          <div className={styles.container} data-testid="container">
-            <div className={styles.content} data-testid="content">
-              { children }
+          <UserTokenProvider>
+            <Nav />
+            <div className={styles.container} data-testid="container">
+              <div className={styles.content} data-testid="content">
+                { children }
+              </div>
             </div>
-          </div>
+          </UserTokenProvider>
         </div>
       </body>
     </html>
