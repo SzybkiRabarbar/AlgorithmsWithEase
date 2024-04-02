@@ -28,5 +28,5 @@ urlpatterns = [
 
     path('api/content/', include('site_content.urls')),
     path('api/', include('postgre_manager.urls')),
-    path('api/post/', include('users_progress.urls')),
+    path('api/data/', include('users_progress.urls')),
 ]

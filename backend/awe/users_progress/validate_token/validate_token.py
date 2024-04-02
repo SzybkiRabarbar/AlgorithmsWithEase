@@ -14,11 +14,11 @@ class ValidateToken:
     #     CLIENT_ID = content['client_id']
 
     @staticmethod
-    def decode(token):
-        
+    def decode(raw_token: str):
         try:
             # Verify the ID token while checking if the token is revoked by
             # passing check_revoked=True.
+            token = raw_token.split(' ')[1]
             decoded_token = auth.verify_id_token(
                 token, check_revoked=True)
 
