@@ -6,8 +6,10 @@ import square from '/public/7e7e7e/square-regular.svg';
 import bookmark from '/public/7e7e7e/bookmark-regular.svg';
 import Link from 'next/link'
 import Image from 'next/image'
-import patchData from '@/utils/patchData';
+import patchUserProgressStatusData from '@/utils/patchData';
 import { useUserToken } from '@/components/user-token-context/UserTokenContext';
+import { useUserProgressStatus } from '../user-progress-status-context/UserProgressStatusContext';
+import Loading from '../loading/Loading';
 
 
 export default function ButtonsInArticle(
@@ -15,16 +17,17 @@ export default function ButtonsInArticle(
 {
 
   const { userToken } = useUserToken();
-  const mutation = patchData();
+  const { userProgressData, setUserProgressData, fetchedUserProgressError,
+    fetchedUserProgressIsLoading } = useUserProgressStatus();
+  const mutation = patchUserProgressStatusData();
 
-  const handleClick = () => {
-    console.log(userToken);
+  const handleSquareClick = () => {
     if (userToken) {
       mutation.mutate({
         token: userToken,
-        fireId: params.fireId,
-        groupId: params.groupId,
-        actionNumber: 1,
+        fire_id: params.fireId,
+        group_id: params.groupId,
+        progress_status: 1,
       });
       if (mutation.isError) {
         console.log(mutation.error.message);
@@ -37,6 +40,10 @@ export default function ButtonsInArticle(
     }
   };
 
+  const handleBookmarkClick = () => {
+    console.log(userProgressData);
+  };
+
   return (
     <div className={styles.ButtonsInArticle}>
       <div className={`${styles.buttonsCont}  ${styles[params.position]}`}>
@@ -45,12 +52,17 @@ export default function ButtonsInArticle(
             <Image src={angleLeft} alt={ "Angle" } />
           </div>
         </Link>
-        <div className={styles.button} onClick={handleClick}>
-          <Image src={square} alt={ "Square" } />
-        </div>
-        <div className={styles.button}>
-          <Image src={bookmark} alt={ "Bookmark" } />
-        </div>
+        {/* {userToken === null}  // TODO when user is not logged */}
+        {/* {fetchedUserProgressIsLoading && <Loading />}    */}
+        {/* {fetchedUserProgressError}  // TODO */}
+        {userProgressData && (<>
+          <div className={styles.button} onClick={handleSquareClick}>
+            <Image src={square} alt={ "Square" } />
+          </div>
+          <div className={styles.button} onClick={handleBookmarkClick}>
+            <Image src={bookmark} alt={ "Bookmark" } />
+          </div>
+        </>)}
       </div>
     </div>
   )

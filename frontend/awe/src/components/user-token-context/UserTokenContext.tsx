@@ -8,7 +8,8 @@ interface UserTokenContextProps {
 }
 
 
-export const UserTokenContext = createContext<UserTokenContextProps | undefined>(undefined);
+export const UserTokenContext =
+  createContext<UserTokenContextProps | undefined>(undefined);
 
 
 export const useUserToken = () => {
@@ -20,7 +21,8 @@ export const useUserToken = () => {
 };
 
 
-export const UserTokenProvider: React.FC<{children: ReactNode}> = ({ children }) => {
+export const UserTokenProvider: React.FC<{children: ReactNode}> = 
+({ children }) => {
   const [userToken, setUserToken] = useState<string | null>(null);
 
   return (
