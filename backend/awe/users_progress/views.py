@@ -1,3 +1,4 @@
+from collections import defaultdict
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -38,11 +39,17 @@ class GetUserProgressStatus(APIView):
 
         payload = ValidateToken.decode(token)
         if isinstance(payload, str):  # | If error occurred
+            print(payload)
             return Response({'error:': payload},
                             status=status.HTTP_401_UNAUTHORIZED)
 
         model_objects = UserProgressStatus.objects
         user_progress_status = model_objects.filter(user_id=payload['user_id'])
 
-        return Response(user_progress_status.values())
+        # { group_id : {fire_id: progress_status}}
+        transformed_data = defaultdict(dict)
+        for i in user_progress_status:
+            transformed_data[i.group_id][i.fire_id] = i.progress_status
+
+        return Response(transformed_data)
 
