@@ -22,14 +22,16 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className={styles.back} data-testid="background">
-        <UserTokenProvider><UserProgressStatusProvider>
+        <UserTokenProvider>
+          <UserProgressStatusProvider>
             <Nav />
             <div className={styles.container} data-testid="container">
               <div className={styles.content} data-testid="content">
                 { children }
               </div>
             </div>
-        </UserProgressStatusProvider></UserTokenProvider>
+          </UserProgressStatusProvider>
+        </UserTokenProvider>
         </div>
       </body>
     </html>

@@ -10,9 +10,6 @@ const prefix = 'http://127.0.0.1:8000/api';
 
 function fetchDataWithToken<T>(url: string, token: string | null) {
 
-  console.log(token);
-  console.log('fetchDataWithToken');
-
   const fetchedData = useQuery<T>({
     queryKey: [prefix + url],
     queryFn: async () => {
