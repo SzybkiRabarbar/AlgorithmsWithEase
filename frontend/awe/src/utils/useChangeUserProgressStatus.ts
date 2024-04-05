@@ -6,8 +6,9 @@ import patchUserProgressStatusData from "@/utils/patchData";
 
 
 function useChangeUserProgressStatus() {
+
   const { userToken } = useUserToken();
-  const { userProgressData, setUserProgressData } = useUserProgressStatus();
+  const { userProgressData } = useUserProgressStatus();
   const mutation = patchUserProgressStatusData();
   
   return (groupId: number, isProblem: boolean, fireId: string, action: number) => {
@@ -40,16 +41,9 @@ function useChangeUserProgressStatus() {
         token: userToken,
         fire_id: fireId,
         group_id: groupId,
+        type_: type_,
         progress_status: status,
       });
-      if (mutation.isError) {  // TODO show msg that write was falsy
-        console.log(mutation.error.message);
-      }
-      if (mutation.isSuccess) {
-        // TODO modify local userProgressData
-        console.log(mutation.status);
-      }
-
     }
   }
 }

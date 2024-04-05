@@ -51,7 +51,6 @@ export const UserProgressStatusProvider: React.FC<{children: ReactNode}> =
 
   useEffect(() => {
     if (!fetchedUserProgressIsLoading) {
-      console.log('setUserProgressData');
       setUserProgressData(fetchedUserProgressData);
       // setUserProgressError(fetchedUserProgressError);
       // setUserProgressIsLoading(fetchedUserProgressIsLoading);

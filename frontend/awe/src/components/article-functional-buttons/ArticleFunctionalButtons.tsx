@@ -12,6 +12,7 @@ import useChangeUserProgressStatus from '@/utils/useChangeUserProgressStatus';
 
 
 function ButtonTemplate(props: {onClick: () => void, src: any, alt: string}) {
+
   return (
     <div className={styles.button} onClick={props.onClick}>
       <Image src={ props.src } alt={ props.alt } />
@@ -67,11 +68,12 @@ export default function ButtonsInArticle(
                 TODO error
               </>
             )}
-            {userProgressData && (<>
-              <ButtonTemplate onClick={() => handleChangeClick(1)}
-                src={ square } alt={ 'Square' } />
-              <ButtonTemplate onClick={() => handleChangeClick(2)}
-                src={ bookmark } alt={ 'Bookmark' } />
+            {userProgressData && (
+              <>
+                <ButtonTemplate onClick={() => handleChangeClick(1)}
+                  src={ square } alt={ 'Square' } />
+                <ButtonTemplate onClick={() => handleChangeClick(2)}
+                  src={ bookmark } alt={ 'Bookmark' } />
               </>
             )}
           </>
