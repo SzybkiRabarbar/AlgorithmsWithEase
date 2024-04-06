@@ -8,7 +8,7 @@ interface UserTokenContextProps {
 }
 
 
-export const UserTokenContext =
+const UserTokenContext =
   createContext<UserTokenContextProps | undefined>(undefined);
 
 

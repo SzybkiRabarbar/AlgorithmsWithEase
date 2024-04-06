@@ -4,6 +4,7 @@ import styles from "./layout.module.scss";
 import Nav from "@/components/nav/Nav";
 import { UserTokenProvider } from "@/components/user-token-context/UserTokenContext";
 import { UserProgressStatusProvider } from "@/components/user-progress-status-context/UserProgressStatusContext";
+import { IsPatchingDataProvider } from "@/components/is-patching-data-context/IsPatchingDataContext";
 
 
 export const metadata: Metadata = {
@@ -22,16 +23,20 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className={styles.back} data-testid="background">
-        <UserTokenProvider>
+          <UserTokenProvider>
           <UserProgressStatusProvider>
+          <IsPatchingDataProvider>
+
             <Nav />
             <div className={styles.container} data-testid="container">
               <div className={styles.content} data-testid="content">
                 { children }
               </div>
             </div>
+
+          </IsPatchingDataProvider>
           </UserProgressStatusProvider>
-        </UserTokenProvider>
+          </UserTokenProvider>
         </div>
       </body>
     </html>

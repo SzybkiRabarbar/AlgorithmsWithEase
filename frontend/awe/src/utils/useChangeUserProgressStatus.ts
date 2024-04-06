@@ -1,5 +1,6 @@
 'use client'
 
+import { useIsPatchingData } from "@/components/is-patching-data-context/IsPatchingDataContext";
 import { useUserProgressStatus } from "@/components/user-progress-status-context/UserProgressStatusContext";
 import { useUserToken } from "@/components/user-token-context/UserTokenContext";
 import patchUserProgressStatusData from "@/utils/patchData";
@@ -9,6 +10,7 @@ function useChangeUserProgressStatus() {
 
   const { userToken } = useUserToken();
   const { userProgressData } = useUserProgressStatus();
+  const { setIsPatchingData } = useIsPatchingData();
   const mutation = patchUserProgressStatusData();
   
   return (groupId: number, isProblem: boolean, fireId: string, action: number) => {
@@ -36,7 +38,8 @@ function useChangeUserProgressStatus() {
       } else {
         status += action;
       }
-
+      
+      setIsPatchingData(true);
       mutation.mutate({
         token: userToken,
         fire_id: fireId,

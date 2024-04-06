@@ -10,13 +10,11 @@ interface UserPorgressStatusContextProps {
   userProgressData: UserProgressStatusDataInterface | undefined;
   setUserProgressData: React.Dispatch<React.SetStateAction<UserProgressStatusDataInterface | undefined>>;
   fetchedUserProgressError: Error | null;
-  // setUserProgressError: React.Dispatch<React.SetStateAction<Error | null>>;
   fetchedUserProgressIsLoading: boolean;
-  // setUserProgressIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 
-export const UserProgressStatusContext =
+const UserProgressStatusContext =
   createContext<UserPorgressStatusContextProps | undefined>(undefined);
 
 
@@ -35,10 +33,6 @@ export const UserProgressStatusProvider: React.FC<{children: ReactNode}> =
 
   const [userProgressData, setUserProgressData] = 
     useState<UserProgressStatusDataInterface | undefined>(undefined);
-  // const [userProgressError, setUserProgressError] =
-  //   useState<Error | null>(null);
-  // const [userProgressIsLoading, setUserProgressIsLoading] =
-  //   useState<boolean>(false);
 
   const {
       data: fetchedUserProgressData,
@@ -52,8 +46,6 @@ export const UserProgressStatusProvider: React.FC<{children: ReactNode}> =
   useEffect(() => {
     if (!fetchedUserProgressIsLoading) {
       setUserProgressData(fetchedUserProgressData);
-      // setUserProgressError(fetchedUserProgressError);
-      // setUserProgressIsLoading(fetchedUserProgressIsLoading);
     }
   });
 
@@ -61,8 +53,8 @@ export const UserProgressStatusProvider: React.FC<{children: ReactNode}> =
     <UserProgressStatusContext.Provider value={
         {
           userProgressData, setUserProgressData,
-          fetchedUserProgressError,   // setUserProgressError,
-          fetchedUserProgressIsLoading,  // setUserProgressIsLoading
+          fetchedUserProgressError,
+          fetchedUserProgressIsLoading,
         }
     }>
       {children}
