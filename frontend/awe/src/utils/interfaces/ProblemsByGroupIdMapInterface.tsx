@@ -13,5 +13,4 @@ interface ProblemsHashMapInterface {
   [fire_id: string]: ProblemInterface;
 }
 
-
 export default ProblemsHashMapInterface

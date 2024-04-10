@@ -1,7 +1,7 @@
 'use client'
 
-import fetchDataFromSerer from '@/utils/fetchDataFromServer';
 import styles from './ProblemList.module.scss';
+import fetchDataFromSerer from '@/utils/fetchDataFromServer';
 import ProblemsHashMapInterface from '@/utils/interfaces/ProblemsByGroupIdMapInterface';
 import Loading from '@/components/loading/Loading';
 

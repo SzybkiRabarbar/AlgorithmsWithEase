@@ -1,11 +1,12 @@
 'use client'
 
+import { useState } from 'react';
+
 import './RenderArticleContent.scss'
 import { ArticleContentItemInferface } from '@/utils/interfaces/ArticleContentInterface';
 import fetchData from '@/utils/fetchData';
-import Code from '../code/Code';
-import { useState } from 'react';
-import Loading from '../loading/Loading';
+import Code from '@/components/code/Code';
+import Loading from '@/components/loading/Loading';
 
 
 export default function GenereteArticleDiv(

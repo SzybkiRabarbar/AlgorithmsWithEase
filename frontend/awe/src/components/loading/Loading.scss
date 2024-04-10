@@ -1,3 +1,5 @@
+@use '@/utils/_fadeIn.scss';
+
 .Loading {
     bottom: 0;
     left: 0;
@@ -7,15 +9,6 @@
     top: 0;
     z-index: 99999;
     animation: fadeIn 2s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
 }
 
 .loader-inner {

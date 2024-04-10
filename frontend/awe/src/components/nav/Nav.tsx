@@ -5,7 +5,7 @@ import './Nav.scss';
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import LoginButton from '../login-button/LoginButton';
+import LoginButton from '@/components/login/login-button/LoginButton';
 
 
 function Nav() {

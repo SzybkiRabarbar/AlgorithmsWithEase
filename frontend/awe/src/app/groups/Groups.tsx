@@ -1,10 +1,11 @@
 'use client'
 
-import GroupsDataInterface from '@/utils/interfaces/GroupsDataInterface';
+import Link from 'next/link';
+
 import styles from './Groups.module.scss';
+import GroupsDataInterface from '@/utils/interfaces/GroupsDataInterface';
 import fetchDataFromServer from '@/utils/fetchDataFromServer';
 import Loading from '@/components/loading/Loading';
-import Link from 'next/link';
 
 
 export default function Groups() {

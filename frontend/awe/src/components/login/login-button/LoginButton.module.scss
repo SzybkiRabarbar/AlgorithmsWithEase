@@ -1,0 +1,33 @@
+@import '@/components/nav/Nav.scss';
+
+.LoginButton {
+    @include default;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 99;
+    box-shadow: none;
+    transition: left 0.4s, opacity 0.3s, visibility 0.3s, border-color 0.9s;
+    background-color: $color-700;
+
+    img {
+        height: 30px;
+        width: 30px;
+    }
+}
+
+.visible {
+    opacity: 1;
+    left: 10px + 70px;
+    visibility: visible;
+}
+
+.LoginWindow {
+    z-index: 78;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: $color-900;
+    background: radial-gradient($color-800, $color-900);
+    border-radius: 35px;
+    border: 2px solid $color-400;
+}

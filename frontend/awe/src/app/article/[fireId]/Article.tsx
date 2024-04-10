@@ -3,12 +3,12 @@
 import styles from './Article.module.scss'
 import ArticleContentInterface from '@/utils/interfaces/ArticleContentInterface';
 import Loading from '@/components/loading/Loading';
-import ButtonsInArticle from '@/components/article-functional-buttons/ArticleFunctionalButtons';
 import RenderArticleContent from '@/components/render-article-content/RenderArticleContent';
 import fetchDataFromServer from '@/utils/fetchDataFromServer';
+import ProgressStatusButton from '@/components/progress-status-button/ProgressStatusButton';
 
 
-export default function Article(params: {fireId: string}) {
+export default function Article(props: {fireId: string}) {
 
   const { 
       data: articleData,
@@ -16,7 +16,7 @@ export default function Article(params: {fireId: string}) {
       isLoading: articleIsLoading 
   } = 
     fetchDataFromServer<ArticleContentInterface>(
-      '/api/content/article/' + params.fireId
+      '/api/content/article/' + props.fireId
     );
 
   return (
@@ -26,18 +26,31 @@ export default function Article(params: {fireId: string}) {
       }
       {articleData && (
         <>
-          <ButtonsInArticle position={'up'}
-            groupId={articleData.group_id} fireId={params.fireId}/>
+          <ProgressStatusButton 
+            isBackButton={true}
+            groupId={articleData.group_id}
+            type_='articles'
+            fireId={props.fireId}
+            radiusCorners={ ['SW', 'SE'] }
+          />
           <div className={styles.header}>
             <span>{ articleData.title }<hr /></span>
           </div>
           {Object.entries(articleData.content).map((obj, index) => (
             <RenderArticleContent obj={obj[1]} index={index} />
           ))}
-          <ButtonsInArticle position={'down'}
-            groupId={articleData.group_id} fireId={params.fireId}/>
+          <ProgressStatusButton 
+            isBackButton={true}
+            groupId={articleData.group_id}
+            type_='articles'
+            fireId={props.fireId}
+            radiusCorners={ ['NW', 'NE'] }
+          />
         </>
       )}
+      {articleError &&
+        <div>TODO</div> // TODO
+      }
     </div>
   )
 }

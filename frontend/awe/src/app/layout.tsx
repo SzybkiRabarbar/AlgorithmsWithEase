@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+
 import "./globals.scss";
 import styles from "./layout.module.scss";
 import Nav from "@/components/nav/Nav";
-import { UserTokenProvider } from "@/components/user-token-context/UserTokenContext";
-import { UserProgressStatusProvider } from "@/components/user-progress-status-context/UserProgressStatusContext";
-import { IsPatchingDataProvider } from "@/components/is-patching-data-context/IsPatchingDataContext";
+import { UserTokenProvider } from "@/contexts/UserTokenContext";
+import { UserProgressStatusProvider } from "@/contexts/UserProgressStatusContext";
+import { IsPatchingDataProvider } from "@/contexts/IsPatchingDataContext";
 
 
 export const metadata: Metadata = {

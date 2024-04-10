@@ -4,7 +4,7 @@ import path from 'path';
 const nextConfig = {
   sassOptions: {
     includePaths: [path.join(process.cwd(), 'styles')],
-    prependData: '@use "@/utils/colors.scss" as *;'
+    prependData: '@use "@/utils/_colors.scss" as *;'
   },
 };
 

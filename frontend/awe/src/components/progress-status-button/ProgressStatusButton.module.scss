@@ -1,0 +1,41 @@
+@use '@/utils/_fadeIn.scss';
+@use '@/utils/_borderRadiusCorners.scss';
+
+.ProgressStatusButton {
+    border-radius: 0px;
+    display: flex;
+    justify-content: center;
+    animation: 1s fadeIn 0s ease-in-out;
+
+
+    .buttonsCont {
+        background-color: $color-900;
+        position: relative;
+    }
+
+    .fadeInAnim {
+        animation: 1s fadeIn 0s ease-in-out;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px;
+        box-shadow: none;
+        border-color: transparent;
+        border-style: solid;
+        border-radius: 30px;
+        transition: border-color .3s ease-in-out, box-shadow .3s ease-in-out;
+
+        img {
+            margin: 0 auto;
+            display: block;
+            width: 30px;
+            height: 30px;
+        }
+        
+        &:hover {
+            box-shadow: 0vmin 0vmin 1vmin $color-50;
+            border-color: $color-50;
+        }
+    }
+}

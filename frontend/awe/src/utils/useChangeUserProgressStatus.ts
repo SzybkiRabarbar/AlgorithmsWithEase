@@ -1,8 +1,8 @@
 'use client'
 
-import { useIsPatchingData } from "@/components/is-patching-data-context/IsPatchingDataContext";
-import { useUserProgressStatus } from "@/components/user-progress-status-context/UserProgressStatusContext";
-import { useUserToken } from "@/components/user-token-context/UserTokenContext";
+import { useIsPatchingData } from "@/contexts/IsPatchingDataContext";
+import { useUserProgressStatus } from "@/contexts/UserProgressStatusContext";
+import { useUserToken } from "@/contexts/UserTokenContext";
 import patchUserProgressStatusData from "@/utils/patchData";
 
 

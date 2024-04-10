@@ -1,10 +1,11 @@
 'use client'
 
-import ArticleDetailInterface from '@/utils/interfaces/ArticleDetailInterface';
+import Link from 'next/link';
+
 import styles from './GroupDetail.module.scss'
+import ArticleDetailInterface from '@/utils/interfaces/ArticleDetailInterface';
 import fetchDataFromServer from '@/utils/fetchDataFromServer';
 import Loading from '@/components/loading/Loading';
-import Link from 'next/link';
 
 
 export default function GroupDetail(params: {groupId: string}) {
