@@ -20,6 +20,11 @@
 
     .buttonsCont {
         background-color: $color-900;
+        position: relative;
+    }
+
+    .fadeInAnim {
+        animation: 1s fadeIn 0s ease-in-out;
     }
 
     .button {

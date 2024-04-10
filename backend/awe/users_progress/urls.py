@@ -1,6 +1,11 @@
 from django.urls import path
-from .views import RetrieveUserAction
+from .views import PatchUserProgressStatus, GetUserProgressStatus
 
 urlpatterns = [
-    path('retrieve-action/', RetrieveUserAction.as_view(), name='Retrieve User Action'),
+    path('patch/user-progress-status/',
+         PatchUserProgressStatus.as_view(),
+         name='Patch User Progress Status'),
+    path('get/user-progress-status/',
+         GetUserProgressStatus.as_view(),
+         name='Get User Progress Status'),
 ]

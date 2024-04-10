@@ -10,28 +10,32 @@ import fetchDataFromServer from '@/utils/fetchDataFromServer';
 
 export default function Article(params: {fireId: string}) {
 
-  const { data, error, isLoading } = 
+  const { 
+      data: articleData,
+      error: articleError,
+      isLoading: articleIsLoading 
+  } = 
     fetchDataFromServer<ArticleContentInterface>(
       '/api/content/article/' + params.fireId
     );
 
   return (
     <div className={styles.Article}>
-      {isLoading &&
+      {articleIsLoading &&
         <Loading />
       }
-      {data && (
+      {articleData && (
         <>
           <ButtonsInArticle position={'up'}
-            groupId={data.group_id} fireId={params.fireId}/>
+            groupId={articleData.group_id} fireId={params.fireId}/>
           <div className={styles.header}>
-            <span>{ data.title }<hr /></span>
+            <span>{ articleData.title }<hr /></span>
           </div>
-          {Object.entries(data.content).map((obj, index) => (
+          {Object.entries(articleData.content).map((obj, index) => (
             <RenderArticleContent obj={obj[1]} index={index} />
           ))}
           <ButtonsInArticle position={'down'}
-            groupId={data.group_id} fireId={params.fireId}/>
+            groupId={articleData.group_id} fireId={params.fireId}/>
         </>
       )}
     </div>

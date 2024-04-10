@@ -8,6 +8,7 @@ import {
   onAuthStateChanged, signOut, GithubAuthProvider 
 } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useUserToken } from '@/components/user-token-context/UserTokenContext';
 
 
 const app: FirebaseApp = initializeApp(getFirebaseConfig());
@@ -15,15 +16,17 @@ const app: FirebaseApp = initializeApp(getFirebaseConfig());
 
 export default function User() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
+  const { setUserToken } = useUserToken();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
+    const unsubscribe = onAuthStateChanged(getAuth(), async (user) => {
       if (user) {
         setIsUserLoggedIn(true);
-        setUserName(user.displayName || "Unknown");
         setUserEmail(user.email || "Unknown");
+
+        const token = await user.getIdToken();
+        setUserToken(token);
       } else {
         setIsUserLoggedIn(false);
       }

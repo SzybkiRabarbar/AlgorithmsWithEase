@@ -41,10 +41,9 @@ function Nav() {
 
   return (
     <>
-      <div className="Nav">
+      <div className="Nav" onClick={() => toogleVisibility()}>
         <Image src='/7e7e7e/bars-solid.svg' alt='≡' width="40" height="40" 
           style={{ transform: `rotate(${rotation}deg)`}}
-          onClick={() => toogleVisibility()}
         />
       </div>
       <LoginButton isVisible={isVisible} />

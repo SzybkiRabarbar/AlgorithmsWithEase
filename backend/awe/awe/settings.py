@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'site_content',
     'postgre_manager',
+    'users_progress',
 ]
 
 MIDDLEWARE = [
