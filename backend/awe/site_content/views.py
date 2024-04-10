@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from rest_framework.views import APIView 
 from rest_framework.response import Response 
+from rest_framework import status
 from postgre_manager.models import Article, Problem
 from site_content.firebase_conn.firebase_conn import firebase_instance
 
@@ -19,6 +20,21 @@ class ProblemByIdView(APIView):
     def get(self, request, question_id=None):
         problem = firebase_instance.db.collection("problems").document(question_id).get()
         return Response(problem.to_dict())
+
+
+class ProblemsByGroupIdView(APIView):
+    
+    def get(self, request, group_id=None):
+        ref = firebase_instance.db.collection("problems")
+        query_ref = ref.where('group_id', '==', str(group_id))
+
+        problems = {doc.id: doc.to_dict() for doc in query_ref.stream()}
+
+        if problems:
+            return Response(problems)
+        else:
+            return Response({'error:': f"group_id {group_id} doesn't exists"},
+                            status=status.HTTP_404_NOT_FOUND)
 
 
 @login_required
