@@ -1,6 +1,6 @@
 interface GroupsDataInterface {
-  articles: [ [number, number] ];  // [ group_id, article_id ]
-  problems: [ [number, number] ];  // [ group_id, problem_id ]
+  articles: [ [number, string] ];  // [ group_id, article_id ]
+  problems: [ [number, string] ];  // [ group_id, problem_id ]
   groups: [ {id: number, name: string} ];
 }
 

@@ -16,18 +16,26 @@ export default function GroupDetail(params: {groupId: string}) {
 
   return (
     <div className={styles.GroupDetail}>
-      {isLoading &&
+      {isLoading  ? (
         <Loading />
-      }
-      {data &&
-        data.map((obj, index) => (
-          <div key={ index } className={styles.articleItem}>
-            <Link href={"/article/" + obj.fire_id}>
-              <h3>{ obj.name }</h3>
+      ) : (<>
+        {data &&
+          data.map((obj, index) => (
+            <div key={ index } className={styles.articleItem}>
+              <Link href={"/article/" + obj.fire_id}>
+                <h3>{ obj.name }</h3>
+              </Link>
+            </div>
+          ))
+        }
+        {true &&
+          <div>
+            <Link href={"/problems/" + params.groupId}>
+              <h3>Problems</h3>
             </Link>
           </div>
-        ))
-      }
+        }
+      </>)}
     </div>
   )
 }
