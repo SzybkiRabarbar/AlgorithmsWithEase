@@ -68,7 +68,7 @@ class GetUserProgressStatus(APIView):
         user_progress_status = model_objects.filter(user_id=payload['user_id'])
 
         # { group_id : { type_ : { fire_id : progress_status } } }
-        transformed_data = defaultdict(dict)
+        transformed_data = defaultdict(lambda: defaultdict(dict))
         for i in user_progress_status:
             type_ = 'problems' if i.is_problem else 'articles'
             transformed_data[i.group_id][type_][i.fire_id] = i.progress_status
