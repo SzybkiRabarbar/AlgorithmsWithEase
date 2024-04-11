@@ -33,7 +33,26 @@ function ProgressStatusButton(props: {
     fetchedUserProgressIsLoading } = useUserProgressStatus();
   const { isPatchingData } = useIsPatchingData();
 
-  const ButtonTemplate = (props: {onClick: () => void, src: any, alt: string}) => {
+  const handleChangeClick = (action: number) => {
+    changeUserProgressStatus(props.groupId, props.type_, props.fireId, action)
+  };
+
+  const handleClickWithoutUserToken = () => {
+    // TODO need to login to use this function msg (floating window?)
+    console.log('Need to SignIn')
+  };
+
+  /**
+   * `ButtonTemplate` is a React functional component that renders
+   *  a button with an image.
+   */
+  const ButtonTemplate = (
+    props: {
+      onClick: () => void,
+      src: any,
+      alt: string
+    }
+  ) => {
 
     return (
       <div className={styles.button} onClick={props.onClick}>
@@ -42,15 +61,26 @@ function ProgressStatusButton(props: {
     )
   }
 
-  const handleChangeClick = (action: number) => {
-    changeUserProgressStatus(props.groupId, false, props.fireId, action)
-  };
-
-  const handleClickWithoutUserToken = () => {
-    // TODO need to login to use this function msg (floating window?)
-    console.log('Need to SignIn')
-  };
-
+  /**
+   * `UserProgressButtons` is a React functional component that renders
+   *  two button templates based on the values in `userProgressData`.
+   *
+   * The first button template renders a checked or unchecked square icon
+   *  depending on the value of
+   *  `userProgressData[props.groupId][props.type_][props.fireId]`.
+   * If the value is `1` or `3`, it renders a checked square icon;
+   *  otherwise, it renders an unchecked square icon.
+   * When clicked, the button calls the `handleChangeClick` function with
+   *  the argument `1`.
+   *
+   * The second button template renders a checked or unchecked bookmark icon
+   *  depending on the value of
+   *  `userProgressData[props.groupId][props.type_][props.fireId]`.
+   * If the value is `2` or `3`, it renders a checked bookmark icon;
+   *  otherwise, it renders an unchecked bookmark icon.
+   * When clicked, the button calls the `handleChangeClick` function with
+   *  the argument `2`.
+   */
   const UserProgressButtons = () => {
 
     const gi = props.groupId;
@@ -60,32 +90,53 @@ function ProgressStatusButton(props: {
     if (userProgressData) {
       return (
         <>
-          {[1, 3].includes(userProgressData[gi][ty][fi]) ?
+          {userProgressData[gi]?.[ty]?.[fi] &&
+          [1, 3].includes(userProgressData[gi][ty][fi]) ?
             <ButtonTemplate onClick={() => handleChangeClick(1)}
-              src={ checkedSquare } alt={ 'Square' } />
+              src={ checkedSquare } alt={ 'Checked Square' } />
           :
             <ButtonTemplate onClick={() => handleChangeClick(1)}
               src={ square } alt={ 'Square' } />
           }
-          {[2, 3].includes(userProgressData[gi][ty][fi]) ?
+          {userProgressData[gi]?.[ty]?.[fi] &&
+          [2, 3].includes(userProgressData[gi][ty][fi]) ?
             <ButtonTemplate onClick={() => handleChangeClick(2)}
-              src={ checkedBookmark } alt={ 'Bookmark' } />
+              src={ checkedBookmark } alt={ 'Checked Bookmark' } />
           :
             <ButtonTemplate onClick={() => handleChangeClick(2)}
               src={ bookmark } alt={ 'Bookmark' } />
           }
         </>
-      )
+      );
     }
   }
 
+  /**
+   * `UserTokenIsNotNullButtons` is a React functional component that
+   *  conditionally renders different sets of buttons based on various states.
+   *
+   * If `userToken` is not `null`, the component returns a fragment with
+   *  the following conditional elements:
+   *
+   * - If `fetchedUserProgressIsLoading` or `isPatchingData` is `true`,
+   *    it renders two dummy buttons with square and bookmark icons.
+   *    These buttons are meant to be covered and do not have any click handlers.
+   *
+   * - If `fetchedUserProgressError` is `true`, it renders a placeholder for
+   *    an error message.
+   *
+   * - If `isPatchingData` is `false`, it renders
+   *    the `UserProgressButtons` component.
+   *
+   * If `userToken` is `null`, the component does not render anything.
+   */
   const UserTokenIsNotNullButtons = () => {
 
     if (userToken !== null) { 
       return (
         <>
           {(fetchedUserProgressIsLoading || isPatchingData) && (
-            // dummy buttons that will be cover
+            // dummy buttons that will be covered
             <>
               <ButtonTemplate onClick={ () => {} }
                 src={ square } alt={ 'Square' } />

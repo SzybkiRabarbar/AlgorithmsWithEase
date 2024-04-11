@@ -13,9 +13,7 @@ function useChangeUserProgressStatus() {
   const { setIsPatchingData } = useIsPatchingData();
   const mutation = patchUserProgressStatusData();
   
-  return (groupId: number, isProblem: boolean, fireId: string, action: number) => {
-
-    const type_ = isProblem ? 'problems' : 'articles';
+  return (groupId: number, type_: string, fireId: string, action: number) => {
 
     if (userProgressData && userToken !== null) {
       // Check and initialize groupId
