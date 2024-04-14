@@ -1,0 +1,107 @@
+.RenderProblemContent {
+    z-index: 5;
+    // position: absolute;
+    // margin: 10px;
+    width: 600px;
+    // background-color: $color-900;
+
+    .top {
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        display: flex;
+        width: 100%;
+        z-index: 101;
+
+        .left {
+            border-radius: 5px;
+            border-top-left-radius: 30px;
+            margin: 1px;
+            background-color: $color-900;
+            width: auto;
+            white-space: nowrap;
+            z-index: 102;
+        }
+
+        .right {
+            cursor: pointer;
+            border-radius: 5px;
+            border-top-right-radius: 30px;
+            margin: 1px;
+            background-color: $color-900;
+            flex-grow: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            z-index: 102;
+            padding-left: 15px;
+
+            a {
+                text-decoration: none;
+                color: $color-100;
+                flex-grow: 1;
+                white-space: nowrap;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                text-overflow: ellipsis;
+            }
+
+            img {
+                width: 25px;
+                height: auto;
+            }
+
+            .nameSpan {
+                margin-left: 10px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 30px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .bottom {
+        min-height: 50px;
+        width: 100%;
+        display: flex;
+        z-index: 101;
+
+        .buttons {
+            background-color: 900px;
+            border-radius: 5px;
+            border-bottom-left-radius: 30px;
+            flex-grow: 1;
+            z-index: 102;
+            margin: 1px;
+            background-color: $color-900;
+            width: auto;
+            white-space: nowrap;
+        }
+
+        .diff {
+            background-color: 900px;
+            border-radius: 5px;
+            border-bottom-right-radius: 30px;
+            min-width: 90px;
+            z-index: 102;
+            margin: 1px;
+            background-color: $color-900;
+            width: auto;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+
+            .diffSpan {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 15px;
+                font-weight: 600;
+            }
+        }
+    }
+}

@@ -29,10 +29,10 @@ function Nav() {
       >
         <div className={`menu${counter} ${isVisible ? 'visible' : 'hidden'}`}
           data-testid={ 'div' + url }
+          onClick={() => toogleVisibility()} 
         >
           <Image src={`/7e7e7e/${asset}.svg`} alt={ "img " + url } 
             width="40" height="40" 
-            onClick={() => toogleVisibility()} 
           />
         </div>
       </Link>

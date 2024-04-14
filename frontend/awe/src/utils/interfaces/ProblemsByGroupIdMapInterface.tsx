@@ -1,16 +1,15 @@
-interface ProblemInterface {
-        video_url: string | undefined;
-        important: string;
-        group_id: string;
-        tips: string[] | undefined;
-        problem_url: string;
-        difficulty: string;
-        solution: string | undefined;
+export interface ProblemInterface {
+  name: string;
+  video_url: string | undefined;
+  important: string | undefined;  // str if important else undefined
+  group_id: string;
+  tips: string[] | undefined;
+  problem_url: string;
+  difficulty: string;
+  solution: string | undefined;
 }
 
 
-interface ProblemsHashMapInterface {
+export interface ProblemsHashMapInterface {
   [fire_id: string]: ProblemInterface;
 }
-
-export default ProblemsHashMapInterface
