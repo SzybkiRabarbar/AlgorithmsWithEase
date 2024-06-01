@@ -1,8 +1,8 @@
 'use client'
 
-import { useIsPatchingData } from "@/components/is-patching-data-context/IsPatchingDataContext";
-import { useUserProgressStatus } from "@/components/user-progress-status-context/UserProgressStatusContext";
-import { useUserToken } from "@/components/user-token-context/UserTokenContext";
+import { useIsPatchingData } from "@/contexts/IsPatchingDataContext";
+import { useUserProgressStatus } from "@/contexts/UserProgressStatusContext";
+import { useUserToken } from "@/contexts/UserTokenContext";
 import patchUserProgressStatusData from "@/utils/patchData";
 
 
@@ -13,9 +13,7 @@ function useChangeUserProgressStatus() {
   const { setIsPatchingData } = useIsPatchingData();
   const mutation = patchUserProgressStatusData();
   
-  return (groupId: number, isProblem: boolean, fireId: string, action: number) => {
-
-    const type_ = isProblem ? 'problems' : 'articles';
+  return (groupId: number, type_: string, fireId: string, action: number) => {
 
     if (userProgressData && userToken !== null) {
       // Check and initialize groupId

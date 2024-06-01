@@ -1,10 +1,11 @@
 'use client'
 
-import ArticleDetailInterface from '@/utils/interfaces/ArticleDetailInterface';
+import Link from 'next/link';
+
 import styles from './GroupDetail.module.scss'
+import ArticleDetailInterface from '@/utils/interfaces/ArticleDetailInterface';
 import fetchDataFromServer from '@/utils/fetchDataFromServer';
 import Loading from '@/components/loading/Loading';
-import Link from 'next/link';
 
 
 export default function GroupDetail(params: {groupId: string}) {
@@ -16,18 +17,26 @@ export default function GroupDetail(params: {groupId: string}) {
 
   return (
     <div className={styles.GroupDetail}>
-      {isLoading &&
+      {isLoading  ? (
         <Loading />
-      }
-      {data &&
-        data.map((obj, index) => (
-          <div key={ index } className={styles.articleItem}>
-            <Link href={"/article/" + obj.fire_id}>
-              <h3>{ obj.name }</h3>
+      ) : (<>
+        {data &&
+          data.map((obj, index) => (
+            <div key={ index } className={styles.articleItem}>
+              <Link href={"/article/" + obj.fire_id}>
+                <h3>{ obj.name }</h3>
+              </Link>
+            </div>
+          ))
+        }
+        {true &&
+          <div>
+            <Link href={"/problems/" + params.groupId}>
+              <h3>Problems</h3>
             </Link>
           </div>
-        ))
-      }
+        }
+      </>)}
     </div>
   )
 }

@@ -4,6 +4,7 @@ interface ArticleContentInterface {
   content: {[key: string]: [string, ArticleContentItemInferface]}
 }
 
+
 export interface ArticleContentItemInferface {
   text?: string;
   src?: string;

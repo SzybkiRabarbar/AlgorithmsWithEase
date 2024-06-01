@@ -1,0 +1,11 @@
+.HoverEffectWrapper {
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+        flex-direction: column;
+    }
+}
+.HoverEffectWrapper:hover > .HoverEffectElement::after {
+    opacity: 1;
+  }

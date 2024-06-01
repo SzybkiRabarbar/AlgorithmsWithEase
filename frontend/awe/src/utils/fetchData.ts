@@ -1,9 +1,11 @@
 'use client'
 
-import { QueryClient, useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { QueryClient, useQuery } from "@tanstack/react-query";
+
 
 const queryClient = new QueryClient();
+
 
 function fetchData<T>(url: string) {
   const fetchedData = useQuery<T>({

@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useMutation, QueryClient } from '@tanstack/react-query';
+
 import PatchUserProgressStatusInterface from '@/utils/interfaces/PatchUserProgressStatusInterface';
-import { useUserProgressStatus } from '@/components/user-progress-status-context/UserProgressStatusContext';
-import { useIsPatchingData } from '@/components/is-patching-data-context/IsPatchingDataContext';
+import { useUserProgressStatus } from '@/contexts/UserProgressStatusContext';
+import { useIsPatchingData } from '@/contexts/IsPatchingDataContext';
+
 
 const queryClient = new QueryClient();
 const url = 'http://127.0.0.1:8000/api/data/patch/user-progress-status/';

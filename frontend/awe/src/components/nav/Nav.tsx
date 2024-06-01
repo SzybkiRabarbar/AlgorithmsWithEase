@@ -5,7 +5,7 @@ import './Nav.scss';
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import LoginButton from '../login-button/LoginButton';
+import LoginButton from '@/components/login/login-button/LoginButton';
 
 
 function Nav() {
@@ -29,10 +29,10 @@ function Nav() {
       >
         <div className={`menu${counter} ${isVisible ? 'visible' : 'hidden'}`}
           data-testid={ 'div' + url }
+          onClick={() => toogleVisibility()} 
         >
           <Image src={`/7e7e7e/${asset}.svg`} alt={ "img " + url } 
             width="40" height="40" 
-            onClick={() => toogleVisibility()} 
           />
         </div>
       </Link>
